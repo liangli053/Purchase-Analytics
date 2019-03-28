@@ -14,7 +14,7 @@ from sys import argv
 
 ### Explanation of classes and functions
 
-Two classes `Department` and `Report` are defined.
+**Two classes `Department` and `Report` are defined**:
 
 `Department`: Stores the data associated with each department that need to be written to the output file 
 
@@ -37,7 +37,7 @@ Two classes `Department` and `Report` are defined.
         └── write_to_file(self, output_path): rtype: None, write the output to output_path
 
 
-Three functions are defined:
+**Three functions are defined**:
 
 `get_prod_dept_map(products_path)`: read *products.csv* file and return a dict that maps product id to department id  
 - Arguments:  
@@ -66,7 +66,7 @@ Three functions are defined:
 
 1. Clone the git repository
 ```
-git clone
+git clone https://github.com/liangli053/Purchase-Analytics
 ```
 
 2. make run.sh executable
@@ -79,4 +79,4 @@ chmod u+x run.sh
 ```
 ./run.sh
 ```
-**Output is written in ./output/report.csv**
+Output is written to ./output/report.csv
