@@ -20,13 +20,12 @@ Two classes `Department` and `Report` are defined.
 
     └── Department
         └── __init__
-            └── self.ID: *int*, department ID
+            └── self.ID: `*`int`*`, department ID
             └── self.orders: *int*, total number of orders
             └── self.first_orders: *int*, number of first-time orders
             └── self.percentage: *float*, ratio between self.first_orders and self.orders
 
-`Report`: Stores a dict that each `Department` object is indexed by department id, and a list of sorted `Department`  
-	<p>objects. Several methods to sort objects and write output.</p>
+`Report`: Stores a dict in which each `Department` object is indexed by department id, as well as a list of sorted `Department` objects. Several methods to sort objects and write output.  
 
     ├── Report
         └── __init__
