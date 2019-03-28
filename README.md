@@ -41,17 +41,17 @@ Two classes `Department` and `Report` are defined.
 Three functions are defined:
 
 `get_prod_dept_map(products_path)`: read products.csv file and return a dict that maps product id to department id  
-	- Arguments:  
-		- products_path: str, path to file products.csv  
-	- Returns:  
-		- mapping: dic{int : int}, product_id : department_id
+- Arguments:  
+  - products_path: str, path to file products.csv  
+- Returns:  
+  - mapping: dic{int : int}, product_id : department_id
 	
 `process_order_prod(order_products_path, mapping, report)`: read order_products.csv and update Department and Report objects  
-	- Arguments:  
-		- order_products_path: str, path to file order_products.csv  
-		- mapping: dic{int : int}, hash table returned by `get_prod_dept_map`  
-		- report: A Report object  
-	- Returns: None
+- Arguments:  
+  - order_products_path: str, path to file order_products.csv  
+  - mapping: dic{int : int}, hash table returned by `get_prod_dept_map`  
+  - report: A Report object  
+- Returns: None
 
 `main`: main function
 
