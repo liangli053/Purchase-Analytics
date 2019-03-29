@@ -55,7 +55,7 @@ from sys import argv
 `main`: main function
 
 ### Executation procedure
-1. Read in the paths of input and output files.
+1. Read the paths of input and output files.
 2. Declare a `Report` object named `report` that stores all `Department` objects.
 3. Parse *products.csv* and generate `mapping`, a hash table that maps product id to department id.
 3. Parse *order_products.csv*, read in each order entry, update the `orders` and `first_order` attributes of the corresponding `Department` object.
