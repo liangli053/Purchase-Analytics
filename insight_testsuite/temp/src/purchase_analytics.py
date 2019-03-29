@@ -9,7 +9,6 @@
     Output is written to ./output/report.csv
 """
 
-import os
 from sys import argv
 
 
@@ -95,7 +94,6 @@ class Report:
         """
             Sort all Department objects by department ID, upadte self.depts_sorted.
         """
-        # sort the Department objects by dept_ID
         self.depts_sorted = list(self.departments.values())
         self.depts_sorted.sort(key=lambda x: x.ID)
 
@@ -109,16 +107,14 @@ class Report:
                 The path to the output file
         """
         self.sort_depts()
-        if os.path.isfile(output_path):
-            os.remove(output_path)
         # write to the output file
-        fout = open(output_path, 'a')
-        fout.write("department_id,number_of_orders,number_of_first_orders,percentage\n")
-        for dept in self.depts_sorted:
-            # A department_id should be listed only if number_of_orders is greater than 0
-            if dept.orders > 0:
-                fout.write(str("%d,%d,%d,%0.2f\n" % (dept.ID, dept.orders, dept.first_orders, dept.percentage)))
-        fout.close()
+        with open(output_path, 'w') as fout:
+            fout.write("department_id,number_of_orders,number_of_first_orders,percentage\n")
+            for dept in self.depts_sorted:
+                # A department_id should be listed only if number_of_orders is greater than 0
+                # This is actually already implicitly implemented in func process_order_prod.
+                if dept.orders > 0:
+                    fout.write(str("%d,%d,%d,%0.2f\n" % (dept.ID, dept.orders, dept.first_orders, dept.percentage)))
 
 
 def get_prod_dept_map(products_path):
@@ -136,7 +132,7 @@ def get_prod_dept_map(products_path):
             A hash table with the keys being product id and values being department id.
     """
     mapping = {}
-    with open(products_path) as infile:
+    with open(products_path, 'r') as infile:
         next(infile)
         for line in infile:
             entry = line.strip().split(',')
@@ -162,7 +158,7 @@ def process_order_prod(order_products_path, mapping, report):
             Stores all Department objects that are used to generate output
 
     """
-    with open(order_products_path) as infile:
+    with open(order_products_path, 'r') as infile:
         next(infile)
         for line in infile:
             entry = line.strip().split(',')
@@ -175,13 +171,12 @@ def process_order_prod(order_products_path, mapping, report):
             currDept.first_orders += -(int(entry[-1]) - 1)
 
     # "percentage" attibute of "Department" is calculated only after reading entire log
+    # Alternatively, it can also be updated upon reading each line of the file
     report.update_percentage()
 
 
 def main():
-    """
-        Driver function.
-    """
+    """ Driver function. """
     # read paths of in-/output files
     ORDER_PRODUCTS_PATH = argv[1]
     PRODUCTS_PATH = argv[2]
