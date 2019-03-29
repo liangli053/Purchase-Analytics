@@ -16,31 +16,26 @@ from sys import argv
 
 **Two classes `Department` and `Report` are defined**:
 
-`Department`: Stores the data associated with each department that need to be written to the output file
-- `def __init__`
-  - `self.ID`: int
-    - department ID
-  - `self.orders`: int
-    - total number of orders
-  - `self.first_orders`: int
-    - number of first-time orders
-  - `self.percentage`: float
-    - ratio between self.first_orders and self.orders
+`Department`: Stores the data associated with each department that need to be written to the output file 
 
-`Report`: Stores a dict in which each `Department` object is indexed by department id, as well as a list of sorted `Department` objects. Several methods to sort objects and write output.
-- `def __init__`
-  - `self.departments`: dict {int : Department}
-    - mapping department ID to Department object
-  - `self.depts_sorted`: list [Department]
-    - Department objects sorted based on department ID             
-- `def get_dept(self, dept_ID)`
-  - return the Department object that needs to be updated
-- `def update_percentage(self)`
-  - calculate the percentage attribute of each Department object
-- `def sort_depts(self)`
-  - sort all Department objects by department ID
-- `def write_to_file(self, output_path)`
-  - write the output to output_path
+    └── Department
+        └── __init__
+            └── self.ID: int, department ID
+            └── self.orders: int, total number of orders
+            └── self.first_orders: int, number of first-time orders
+            └── self.percentage: float, ratio between self.first_orders and self.orders
+
+`Report`: Stores a dict in which each `Department` object is indexed by department id, as well as a list of sorted `Department` objects. Several methods to sort objects and write output.  
+
+    ├── Report
+        └── __init__
+        |    └── self.departments: dict {int : Department}, mapping department ID to Department object
+        |    └── self.depts_sorted: list [Department], Department objects sorted based on department ID 
+        ├── get_dept(self, dept_ID): rtype: Department, return the Department object that needs to be updated
+        └── update_percentage(self): rtype: None, calculate the percentage attribute of each Department object
+        └── sort_depts(self): rtype: None, sort all Department objects by department ID
+        └── write_to_file(self, output_path): rtype: None, write the output to output_path
+
 
 **Three functions are defined**:
 
