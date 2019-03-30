@@ -55,11 +55,13 @@ class TestPurchase(unittest.TestCase):
         self.assertEqual(res, expected)
 
     def test_process_order_prod(self):
-        """ Test if the order data can be corrected read and calculated"""
+        """ Test if the orders data can be correctly read and calculated, and if less-than-zero
+            number of orders would raise the correct error."""
         mapping = get_prod_dept_map(self.PRODUCTS_PATH)
         process_order_prod(self.ORDER1_PATH, mapping, self.report)
         # length of report.departments should be 2
         self.assertEqual(len(self.report.departments), 2)
+
         # test the results after reading the orders log
         self.report.sort_depts()
         dept1, dept2 = self.report.depts_sorted[0], self.report.depts_sorted[1]
@@ -69,12 +71,18 @@ class TestPurchase(unittest.TestCase):
         self.assertEqual(res1, expected1)
         self.assertEqual(res2, expected2)
 
+        # Test if <=0 number of orders raises correct error
+        for val in [-10, -2.5, 0]:
+            self.report.departments[101].orders = val
+            self.assertRaises(ValueError, self.report.write_to_file, "./report_test.csv")
+
     def test_output(self):
         """ Test the output file content and format """
         mapping = get_prod_dept_map(self.PRODUCTS_PATH)
         process_order_prod(self.ORDER2_PATH, mapping, self.report)
         # length of report.departments should be 1, since products in department 101 have never been ordered
         self.assertEqual(len(self.report.departments), 1)
+
         # Test the output file. Only department 102 should be written
         self.report.write_to_file("./report_test.csv")
         res = open('./report_test.csv', 'r')

@@ -96,9 +96,9 @@ Since *order_products.csv* typically has millions of lines, `procoess_order_prod
 
 ## Unit Testing
 A few test cases are provided.  
-`test_get_prod_dept_map`: Test if the {product id : department id} hash map constructed from "products.csv" file is correct.
+`test_get_prod_dept_map`: Test if the {product id : department id} hash map constructed from *products.csv* file is correct.
 
-`test_process_order_prod`: Test if the order data can be corrected read and calculated.
+`test_process_order_prod`: Test if the orders data can be correctly read and calculated, and if less-than-zero number of orders would raise the correct error.
 
 `test_output`: Test the output file content and format. In particular, A `department_id` should be listed only if `number_of_orders` is greater than 0
 

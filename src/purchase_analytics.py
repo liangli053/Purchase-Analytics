@@ -113,8 +113,9 @@ class Report:
             for dept in self.depts_sorted:
                 # A department_id should be listed only if number_of_orders is greater than 0
                 # This is actually already implicitly implemented in func process_order_prod.
-                if dept.orders > 0:
-                    fout.write(str("%d,%d,%d,%0.2f\n" % (dept.ID, dept.orders, dept.first_orders, dept.percentage)))
+                if dept.orders <= 0:
+                    raise ValueError('Number of orders must be greater than zero!')
+                fout.write(str("%d,%d,%d,%0.2f\n" % (dept.ID, dept.orders, dept.first_orders, dept.percentage)))
 
 
 def get_prod_dept_map(products_path):
