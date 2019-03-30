@@ -49,7 +49,7 @@ class TestPurchase(unittest.TestCase):
         pass
 
     def test_get_prod_dept_map(self):
-        """ Test if the {product id : department id} constructed from "products.csv" file is correct" """
+        """ Test if the {product id : department id} hash map constructed from "products.csv" file is correct" """
         res = get_prod_dept_map(self.PRODUCTS_PATH)
         expected = {1: 101, 2: 102}
         self.assertEqual(res, expected)

@@ -7,7 +7,7 @@ Insight data engineering 2019 coding challenge. Based on Instacart orders, calcu
 1.1 [Libraries required](README.md#Libraries-required)  
 1.2	 [Explanation of classes and functions](README.md#Explanation-of-classes-and-functions)  
 1.3 [Execution Procedure](README.md#Execution-Procedure)
-2. [Time Complexity Analysis](README.md#Time-Complexity-Analysis)
+2. [Time and Space Complexities Analysis](README.md#Time-and-Space-Complexities-Analysis)
 3. [Unit Testing](README.md#Unit-Testing)
 4. [Instruction to Run Code](README.md#Instruction-to-Run-Code)
 
@@ -86,7 +86,9 @@ from purchase_analytics import Department, Report, get_prod_dept_map, process_or
 4. After processing entire *order_products.csv* file, calculate the `percentage` atrribute of each `Department` object.
 5. Sort all `Department` objects based on department ID, store the sorted list in `reprot.depts_sorted`, and then write to the output file.
 
-## Time Complexity Analysis
+## Time and Space Complexities Analysis
+
+### Time complexity
 `get_prod_dept_map`: O(M), M: length of the *products.csv* file  
 `process_order_prod`: O(N), N: length of the *order_products.csv* file  
 `Report.sort_depts`: O(nlogn), n: number of departments  
@@ -94,7 +96,11 @@ from purchase_analytics import Department, Report, get_prod_dept_map, process_or
 
 Since *order_products.csv* typically has millions of lines, `procoess_order_prod` is the time-limiting step. 
 
-## Unit Testing
+### Space complexity
+Files are read line by line, so this does not take much of memory.  
+The hashmap `prod_dept_map`, which maps product id to department id, grows linearly with the number of products. So the overall space complexity is O(M), with M being the length of the *products.csv* file (number of products).
+
+# Unit Testing
 A few test cases are provided.  
 `test_get_prod_dept_map`: Test if the {product id : department id} hash map constructed from *products.csv* file is correct.
 
