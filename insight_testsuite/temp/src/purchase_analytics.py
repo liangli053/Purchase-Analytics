@@ -20,23 +20,12 @@ class Department:
     def __init__(self, dept_ID):
         """
             Arguments:
-            -------------------
-            dept_ID: int
-                Department ID
-
+                dept_ID: int -- Department ID
             Attributes:
-            -------------------
-            self.ID: int
-                Department ID
-
-            self.orders: int
-                Total number of orders
-
-            self.first_orders: int
-                Total number of first-time orders
-
-            self.percentage: float
-                Ratio between self.first_orders and self.orders
+                self.ID: int -- Department ID
+                self.orders: int -- Total number of orders
+                self.first_orders: int -- Total number of first-time orders
+                self.percentage: float -- Ratio between self.first_orders and self.orders
         """
         self.ID = dept_ID
         self.orders = 0
@@ -53,12 +42,8 @@ class Report:
     def __init__(self):
         """
             Attributes:
-            -------------------
-            self.departments:  dict {int : Department}
-                Mapping department ID to Department object
-
-            self.depts_sorted: list [Department]
-                List of Department objects sorted by department ID
+                self.departments: dict {int : Department} -- Mapping department ID to Department object
+                self.depts_sorted: list [Department] -- List of Department objects sorted by department ID
         """
         # department ID : department class
         self.departments = {}
@@ -69,14 +54,9 @@ class Report:
             Based on the department id, return the corresponding Department object.
 
             Arguments:
-            -------------------
-            dept_ID: int
-                Department ID read from input file
-
+                dept_ID: int -- Department ID
             Returns:
-            -------------------
-            self.departments[dept_ID]: Department object
-                The Department object that is currently being processed
+                self.departments[dept_ID]: Department object -- The Department object that is currently being processed
         """
         # create a Department object if current dept_ID is not seen before
         if dept_ID not in self.departments:
@@ -102,9 +82,7 @@ class Report:
             Write the attribute values of each Department object to the output file.
 
             Arguments:
-            -------------------
-            output_path: str
-                The path to the output file
+                output_path: str -- The path to the output file
         """
         self.sort_depts()
         # write to the output file
@@ -123,14 +101,9 @@ def get_prod_dept_map(products_path):
         Read "products.csv" file and return a hash table that maps product id to department id.
 
         Arguments:
-        -------------------
-        products_path: str
-            Path to the "products.csv" file
-
+            products_path: str -- Path to the "products.csv" file
         Returns:
-        -------------------
-        mapping: dict {int : int}
-            A hash table with the keys being product id and values being department id.
+            mapping: dict {int : int} -- A hash table with the keys being product id and values being department id.
     """
     mapping = {}
     with open(products_path, 'r') as infile:
@@ -148,16 +121,9 @@ def process_order_prod(order_products_path, mapping, report):
         Read "order_products.csv" file and update Department and Report objects.
 
         Arguments:
-        -------------------
-        order_products_path: str
-            Path to file order_products.csv
-
-        mapping: dict {int : int}
-            Hash table returned by function get_prod_dept_map
-
-        report: Report object
-            Stores all Department objects that are used to generate output
-
+            order_products_path: str -- Path to file order_products.csv
+            mapping: dict {int : int} -- Hash table returned by function get_prod_dept_map
+            report: Report object -- Stores all Department objects that are used to generate output
     """
     with open(order_products_path, 'r') as infile:
         next(infile)

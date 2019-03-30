@@ -21,7 +21,6 @@ class Department:
         """
             Arguments:
                 dept_ID: int -- Department ID
-
             Attributes:
                 self.ID: int -- Department ID
                 self.orders: int -- Total number of orders
@@ -55,8 +54,7 @@ class Report:
             Based on the department id, return the corresponding Department object.
 
             Arguments:
-                dept_ID: int -- Department ID read from input file
-
+                dept_ID: int -- Department ID
             Returns:
                 self.departments[dept_ID]: Department object -- The Department object that is currently being processed
         """
@@ -104,7 +102,6 @@ def get_prod_dept_map(products_path):
 
         Arguments:
             products_path: str -- Path to the "products.csv" file
-
         Returns:
             mapping: dict {int : int} -- A hash table with the keys being product id and values being department id.
     """
@@ -127,7 +124,6 @@ def process_order_prod(order_products_path, mapping, report):
             order_products_path: str -- Path to file order_products.csv
             mapping: dict {int : int} -- Hash table returned by function get_prod_dept_map
             report: Report object -- Stores all Department objects that are used to generate output
-
     """
     with open(order_products_path, 'r') as infile:
         next(infile)
