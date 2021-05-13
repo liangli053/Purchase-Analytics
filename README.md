@@ -1,6 +1,6 @@
 # Purchase-Analytics
 
-Insight data engineering 2019 coding challenge. Based on Instacart orders, calculate, for each department, the number of times a product was requested, number of times a product was requested for the first time and a ratio of those two numbers.
+Based on Instacart orders, calculate, for each department, the number of times a product was requested, number of times a product was requested for the first time and a ratio of those two numbers.
 
 ## Table of Contents
 1. [Implementation](README.md#Implementation)  
